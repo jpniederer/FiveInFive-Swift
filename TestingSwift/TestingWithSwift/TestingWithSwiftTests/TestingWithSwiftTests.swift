@@ -24,6 +24,14 @@ class TestingWithSwiftTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Arrange (given)
+        var aNum = 1
+        
+        // Act (when)
+        aNum += 2
+        
+        // Assert (then)
+        XCTAssertEqual(aNum, 3, "The values, \(aNum) and 3, do not match")
     }
     
     func testPerformanceExample() {
