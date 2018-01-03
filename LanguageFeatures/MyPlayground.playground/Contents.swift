@@ -94,3 +94,41 @@ let (errorCode, errorMessage) = namedTuple
 print("Error \(namedTuple.0): \(namedTuple.message)")
 print("Error \(errorCode): \(errorMessage)")
 
+
+// Structs
+struct Item {
+    var name: String
+    var purchasePrice: Float
+    var salesPrice: Float
+    var stock: Int
+    
+    func getMarkupPrice() -> Float {
+        return salesPrice - purchasePrice
+    }
+    
+    func getMarkupPercentage() -> Float {
+        return 100 * (getMarkupPrice() / purchasePrice)
+    }
+    
+    func has() -> Bool {
+        return stock > 0
+    }
+}
+
+var item1 = Item(name: "MacBook Pro", purchasePrice: 1500.0, salesPrice: 1800.0, stock: 10)
+var item2 = Item(name: "iPad Pro", purchasePrice: 400.0, salesPrice: 800.0, stock: 8)
+var item3 = Item(name: "iPad Pro 12.9", purchasePrice: 600.0, salesPrice: 1000.0, stock: 3)
+var item4 = Item(name: "iPad", purchasePrice: 100.0, salesPrice: 300.0, stock: 80)
+var item5 = Item(name: "MacBook", purchasePrice: 1000.0, salesPrice: 1500.0, stock: 0)
+
+item1.has()
+item2.has()
+item2.getMarkupPrice()
+item2.getMarkupPercentage()
+
+var items: [Item] = [item1, item2, item3, item4, item5]
+
+// Using a closure to sort the items by salesPrice, cheapest items first.
+var itemsOrderedByPrice = items.sorted(by: {i1, i2 in i1.salesPrice < i2.salesPrice })
+
+itemsOrderedByPrice
