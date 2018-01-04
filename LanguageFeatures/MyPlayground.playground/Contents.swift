@@ -132,3 +132,58 @@ var items: [Item] = [item1, item2, item3, item4, item5]
 var itemsOrderedByPrice = items.sorted(by: {i1, i2 in i1.salesPrice < i2.salesPrice })
 
 itemsOrderedByPrice
+
+// Classes
+class Person {
+    var firstName: String
+    var lastName: String
+    var birthDate: Date
+    var timeCreated: Date
+    
+    init(firstName: String, lastName: String, birthDate: Date) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.birthDate = birthDate
+        self.timeCreated = Date()
+    }
+    
+    func getAge() -> Int {
+        let now = Date()
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: now)
+        let day = calendar.component(.day, from: now)
+        let year = calendar.component(.year, from: now)
+        let birthMonth = calendar.component(.month, from: self.birthDate)
+        let birthDay = calendar.component(.day, from: self.birthDate)
+        let birthYear = calendar.component(.year, from: self.birthDate)
+        
+        if month < birthMonth {
+            return year - birthYear - 1
+        }
+        else if month > birthMonth {
+            return year - birthYear
+        }
+        else {
+            if day < birthDay {
+                return year - birthYear - 1
+            }
+            else {
+                return year - birthYear
+            }
+        }
+    }
+}
+
+var calendar = Calendar.current
+var dc = DateComponents()
+dc.year = 1995
+dc.month = 1
+dc.day = 3
+var date = calendar.date(from: dc)!
+var p = Person(firstName: "Ron", lastName: "Weasley", birthDate: date)
+p
+p.getAge()
+
+
+
+
